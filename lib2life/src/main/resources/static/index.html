@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+        <title>PDF Processing Pipeline for Digital Library</title>
+        <link rel="stylesheet" href="/css/main.css" />
+    </head>
+    <body>
+        <noscript>
+            <h2>Sorry! Your browser doesn't support Javascript</h2>
+        </noscript>
+        <div class="upload-container">
+            <div class="upload-header">
+                <h2 align="center">PDF Processing Pipeline for Digital Library</h2>
+            </div>
+            <div class="upload-content">
+       
+       <!--Search in ES index and retrieve the results  -->    
+	            <div id ="search" class="search">
+		            <form id="search" name="search" action="/search" method=post>
+		            	<table>
+		             	<tr>
+			             	<td><h3>Search for book: </h3></td>
+			             	<td><input id="searchBook" type="text" name="searchBook" required /></td>
+			            	<td><button id="searchButton" type="submit" class="primary submit-btn">Go</button></td>
+		            	 </tr>
+		            	 </table>
+		            </form>
+	            </div>  
+                      
+                <div class="single-upload">
+                    <h3>Upload PDF document</h3>
+                    <form id="singleUploadForm" name="singleUploadForm">
+                        <input id="singleFileUploadInput" type="file" name="file" class="file-input" required />
+                        <div><table><br>
+                        
+                        <tr><td>Book title:</td><td> <input id="bookTitle" type="text" required /></td></tr>
+                        <tr><td>Author: </td><td><input id="author" type="text" required /></td></tr>
+                        <tr><td>Publishing Year: </td><td><input id="publishingYear" type="number" /></td></tr>
+                        <tr><td>Language: </td><td><input id="language" type="text" /></td></tr>
+                        <tr><td>Specify Page 1 of the Book: </td><td><input id="pageone" type="number" required/></td></tr>
+                        <tr><td>Extract Images: </td><td><input id="images" type="checkbox"></td></tr>
+                        
+                        </table></div>
+                        <br><button type="submit" class="primary submit-btn">Process</button>
+                    </form>
+                   
+                  
+                    <div class="upload-response">
+                        <div id="singleFileUploadError"></div>
+                        <div id="singleFileUploadSuccess"></div>
+                    </div>
+                </div>
+            </div>
+            <div>       
+            <p>Edit processed document before saving.<br>
+            Make sure the titles and the paragraphs were correctly identified.</p>
+            </div>
+            <div>
+	            <form method="POST" id="editProcessedForm">
+					<textarea id="processedJson" name="textarea" rows="50" cols="80"></textarea>
+		            <input type="submit" value="Save">
+				</form>
+			</div>
+        </div>
+        
+  		<script src=/js/tinymce/tinymce.min.js></script>
+  		<script>
+  			tinymce.init({
+  				selector:'textarea',
+  				menubar: false,
+  				toolbar: 'undo redo | formatselect | fullscreen',
+  				block_formats: 'Content=p;Chapter Title=h4'
+  			});
+  		</script>
+  		
+        <script src="/js/main.js" ></script>
+    </body>
+</html>
